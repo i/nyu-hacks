@@ -4,7 +4,6 @@ if (Meteor.isClient) {
   };
 
   Template.foo.bar = function () {
-    return Meteor.users.toString();
   };
 
   Template.hello.events({

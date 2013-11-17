@@ -1,23 +1,29 @@
 <head>
-  <title>nyu-hacks</title>
+  <link rel="stylesheet" href="/css/nyu-hacks.css">
+  <title>Colang - The easiest way to practice a foreign language.</title>
 </head>
 
 <body>
-  <nav id="nav" class="navbar navbar-default" role="navigation">
 
-  </nav>
-
-
-  <div style="align: center;">
-    {{loginButtons}}
-  </div>
+  {{>splash}}
 
 </body>
 
-<template name="foo">
-  <h1></h1>
-  {{bar}}
+<template name="splash">
+  <div id="heading">
+    <h1>CoLang</h1>
+    <h3>The easiest way to practice a foreign language.</h3>
+
+    {{loginButtons}}
+
+  </div>
+
+  <video id="video_background" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+    <source src="/vid/output.mp4" type="video/mp4">
+    Video not supported
+  </video>
 </template>
+
 
 <template name="hello">
   <input type="button" value="Click" />
