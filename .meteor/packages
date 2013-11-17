@@ -10,3 +10,5 @@ preserve-inputs
 bootstrap-3
 accounts-facebook
 accounts-ui
+opentok
+webrtcio

@@ -23,8 +23,8 @@ body {
     line-height: 1.4;
 }
 
-#login-buttons {
-
+.navbar-fixed-top {
+  background: rgb(0,85,0);
 }
 
 /*
@@ -122,6 +122,10 @@ div#container {
     background: none;
     padding: 0px;
     padding-bottom: 150px;
+}
+#main {
+  padding-top:20%;
+  color: black;
 }
 #heading {
     /* Fallback for web browsers that doesn't support RGBa */

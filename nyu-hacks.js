@@ -1,26 +1,52 @@
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to nyu-hacks.";
+
+  Template.main.getname = function() {
+    var k = Meteor.user().profile.name;
+    console.log(k);
+    return k;
   };
 
-  Template.foo.bar = function () {
-  };
-
-  Template.hello.events({
-    // yaaaa
+  Template.main.events({
+    'click #logout' : function() {
+      Meteor.logout()
+    }
   });
 
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
+  Accounts.ui.config({
+      requestPermissions: {
+        facebook: ['user_likes'],
+      },
+      passwordSignupFields: 'USERNAME_ONLY'
   });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+    rtc.on('chat_msg', function(data, socket) {
+      var roomList = rtc.rooms[data.room] || [];
+      console.log(socket);
+      for (var i = 0; i < roomList.length; i++) {
+        var socketId = roomList[i];
+
+        if (socketId !== socket.id) {
+          var soc = rtc.getSocket(socketId);
+
+          if (soc) {
+            soc.send(JSON.stringify({
+              "eventName": "receive_chat_msg",
+              "data": {
+                "messages": data.messages,
+              "color": data.color
+              }
+            }), function(error) {
+              if (error) {
+                console.log(error);
+              }
+            });
+          }
+        }
+      }
+    });
   });
 }
